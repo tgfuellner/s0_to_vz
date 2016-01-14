@@ -37,6 +37,8 @@ const char* VZUUID = "a03572f0-9d6b-11e3-ae04-d7f3e0294bbb";
 CURL *easyhandle;
 CURLM *multihandle;
 
+static char url[128]="";
+
 // the event counter 
 volatile int eventCounter = 0;
 
@@ -54,7 +56,6 @@ unsigned long long unixtime() {
 void update_curl_handle() {
 		static unsigned long long ut_last=0;
 		unsigned long long ut = unixtime();
-        static char url[128];
 
 		if (ut_last && ut - ut_last > 120) {
 			curl_multi_remove_handle(multihandle, easyhandle);
@@ -116,14 +117,12 @@ int main(void) {
         return 1;
     }
 
-    /*
     // display counter value every second.
     while ( 1 ) {
-      printf( "%d\n", eventCounter );
+      printf( "%d Events, last: %s\n", eventCounter, url );
       eventCounter = 0;
-      delay( 1000 ); // wait 1 second
+      delay( 10000 ); // wait 10 second
     }
-    */
 
     curl_global_cleanup();
     return 0;
