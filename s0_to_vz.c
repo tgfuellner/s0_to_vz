@@ -11,6 +11,7 @@ Run as follows:
 
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -120,6 +121,10 @@ int main(void) {
     // display counter value every second.
     while ( 1 ) {
       printf( "%d Events, last: %s\n", eventCounter, url );
+      FILE *fp = fopen ("/tmp/s0Events", "w");
+      fprintf(fp, "%d", eventCounter);
+      fclose(fp);
+
       eventCounter = 0;
       delay( 10000 ); // wait 10 second
     }
