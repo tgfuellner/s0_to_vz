@@ -9,8 +9,9 @@ with open('/tmp/s0Events') as fd:
 
 # if random.randint(1, 2) == 1:
 
-if eventCount < 8 :
+if eventCount < 7 :
 	print("build:__green__")
-else:
+elif eventCount > 9:
 	print("build:__red__")
-	
+else:
+	print("build:__yellow__")
